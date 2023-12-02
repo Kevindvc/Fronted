@@ -44,31 +44,29 @@
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
 </head>
-<a href="{{route('index')}}" class="btn btn-primary">Volver</a>
+<a href="{{route('dueno.home')}}" class="btn btn-primary">Volver</a>
 <body style="background-color:rgb(0, 0, 0) ; color:rgb(250, 250, 250);">
     <div id="contenido">
         <section id="formulario">
             <h1>Crear Nuevo Duenio</h1>
-            <form action="/crear" method="post" th:object="${nvoApartamento}">
+            <form action="{{ route('dueno.crear')}}" method="post">
+                @csrf
+                @method('POST')
                 <div style="display: flex; flex-direction: column; margin-bottom: 10px;">
                     <label style="margin-bottom: 5px;">Nombre:</label>
-                    <input type="text" th:field="*{nombre}" style="padding: 5px; margin-bottom: 10px;">
+                    <input type="text" name="nombre" style="padding: 5px; margin-bottom: 10px;">
                 </div>
                 <div style="display: flex; flex-direction: column; margin-bottom: 10px;">
                     <label style="margin-bottom: 5px;">Apellido:</label>
-                    <input type="text" th:field="*{Apellido}" style="padding: 5px; margin-bottom: 10px;">
+                    <input type="text" name="apellido" style="padding: 5px; margin-bottom: 10px;">
                 </div>
                 <div style="display: flex; flex-direction: column; margin-bottom: 10px;">
                     <label style="margin-bottom: 5px;">Telefono:</label>
-                    <input type="text" th:field="*{Telefono}" style="padding: 5px; margin-bottom: 10px;">
+                    <input type="text" name="telefono" style="padding: 5px; margin-bottom: 10px;">
                 </div>
                 <div style="display: flex; flex-direction: column; margin-bottom: 10px;">
                     <label style="margin-bottom: 5px;">Correo:</label>
-                    <input type="email" th:field="*{correo}" style="margin-bottom: 10px;">
-                </div>
-                <div style="display: flex; flex-direction: column; margin-bottom: 10px;">
-                    <label style="margin-bottom: 5px;">Numero Apartamento:</label>
-                    <input type="text" th:field="*{Numero Apartamento}" style="margin-bottom: 10px;">
+                    <input type="email" name="correo" style="margin-bottom: 10px;">
                 </div>
 
                 <input type="submit" value="Crear Duenio" style="padding: 5px;">

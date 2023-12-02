@@ -19,8 +19,15 @@ Route::get('/', function () {
 });
 
 
-Route::get('/duenios',[DuenioController::class,'index'])->name('index');
+Route::get('/duenos',[DuenioController::class,'index'])
+    ->name('dueno.home');
 
-Route::get('/duenios/crear',[DuenioController::class,'create'])->name('create');
+Route::get('/duenos/nuevo', function () {
+    return view("DueniosCrear");
+})
+    ->name('dueno.nuevo');
+
+Route::post('/duenos/crear', [DuenioController::class, "create"])
+    ->name('dueno.crear');
 
 

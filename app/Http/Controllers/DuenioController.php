@@ -2,51 +2,36 @@
 
 namespace App\Http\Controllers;
 
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 
 class DuenioController extends Controller
 {
     public function index(){
-
-{
-    /*
-
-
-    $client = new Client();
-
-    $response = $client->request('GET', 'https://');
-
-    $statusCode = $response->getStatusCode();
-    $body = $response->getBody()->getContents();
-
-    // Puedes procesar la respuesta según tus necesidades
-    return response($body, $statusCode)->header('Content-Type', 'application/json');
-}
-
-*/
-    // Puedes procesar la respuesta según tus necesidades
-
-}
-
-        return view('Duenios');
+        $client = new Client();
+        $response = $client->request('GET', 'localhost:8080/api/duenos/obtener/todos');
+        $duenos = json_decode($response->getBody(), true);
+        return view('Duenios', compact('duenos'));
     }
 
-    public function create(){
+    public function create(Request $request){
 
+        $dueno = array(
+            "nombre" => $request->input('nombre'),
+            "apellido" => $request->input('apellido'),
+            "telefono" => $request->input('telefono'),
+            "correo" => $request->input('correo'),
+        );
 
-        return view('DueniosCrear');
+        $client = new Client();
+        $request = $client->post('localhost:8080/api/duenos/crear',
+        ['json' => $dueno]
+        );
 
-
+        if ($request->getStatusCode() == 200) {
+            return $this->index();
+        }
+        echo "Ha ocurrido un error!";
     }
-
-    public function Store(Request $request){
-
-
-
-
-    }
-
-
-
 
 }
