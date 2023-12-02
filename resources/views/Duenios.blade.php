@@ -21,7 +21,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </head>
-<a href="{{route('create')}}" class="btn btn-primary">CREAR DUENIO</a>
+<a href="{{route('dueno.nuevo')}}" class="btn btn-primary">Crear Dueño</a>
 
 <body style="background-color:rgb(0, 0, 0) ; color:rgb(250, 250, 250);">
     <div id="contenido" class="p-5">
@@ -46,24 +46,23 @@
             <table style="border-collapse: collapse; width: 100%; background-color: #f2f2f2;">
                 <thead class="bg-info">
                     <tr style="background-color: #333; color: white;">
-                        <th style="padding: 10px;"></th>
-                        <th style="padding: 10px;">Id Duenio</th>
+                        <th style="padding: 10px;">IdDuenio</th>
                         <th style="padding: 10px;">Nombre</th>
                         <th style="padding: 10px;">Apellido</th>
                         <th style="padding: 10px;">Telefono</th>
                         <th style="padding: 10px;">Correo</th>
-                        <th style="padding: 10px;">Numero de apartamento</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="apartamento : ${duenios}" style="background-color: white;">
-                        <td style="border: 1px solid #ddd; padding: 8px;" th:text="${Duenio.IdDuenio}"></td>
-                        <td style="border: 1px solid #ddd; padding: 8px;" th:text="${Duenio.Nombre}"></td>
-                        <td style="border: 1px solid #ddd; padding: 8px;" th:text="${Duenio.Apellido}"></td>
-                        <td style="border: 1px solid #ddd; padding: 8px;" th:text="${Duenio.Telefono}"></td>
-                        <td style="border: 1px solid #ddd; padding: 8px;" th:text="${Duenio.Correo}"></td>
-                        <td style="border: 1px solid #ddd; padding: 8px;" th:text="${Duenio.Aparatemento.NumeroApartamento}"></td>
+                    @foreach ($duenos as $dueno)
+                    <tr style="background-color: white; color: black;">
+                        <td style="border: 1px solid #ddd; padding: 8px;">{{$dueno['idDueno']}}</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">{{$dueno['nombre']}}</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">{{$dueno['apellido']}}</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">{{$dueno['telefono']}}</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">{{$dueno['correo']}}</td>
                     </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
